@@ -66,4 +66,4 @@ constructor(private httpClient: HttpClient){}
     <div class="col-2 block">{{com.id}}</div>
     <div>{{com.name}}</div>
     <div>{{com.email}}</div>
-  
+</div>
