@@ -1,0 +1,69 @@
+//import bootstrap
+
+npm install --save bootstrap
+
+//add to angular.json
+
+"node_modules/bootstrap/dist/css/bootstrap.min.css",
+
+//add modules 
+
+import {HttpClientModule} from '@angular/common/http'; 
+
+//import modules
+
+HttpClientModule
+
+//import modules ts component and ngOninit
+
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+//add constructor 
+
+constructor(private httpClient: HttpClient){}
+
+
+  ngOnInit(): void {
+  
+  //Getting information on start
+  this.getInformation();
+
+  }
+  public url = "https://jsonplaceholder.typicode.com/comments?postId=1"
+
+  lstComments:Comments[]
+
+  //this function will get the information from api
+  getInformation(){
+    this.httpClient.get(this.url)
+    .subscribe(
+
+      (data: any) => {
+        this.lstComments = data
+        
+        console.log(this.lstComments)
+      })
+  }
+  
+  
+  //create class example 
+  
+  import { Comments } from './comments/comments';
+  
+  export class Comments{
+    postId: number;
+    id: number;
+    name:string;
+    email:string;
+    body: string;
+}
+
+
+//html
+
+<div *ngFor="let com of lstComments">
+    <div class="col-2 block">{{com.id}}</div>
+    <div>{{com.name}}</div>
+    <div>{{com.email}}</div>
+  
